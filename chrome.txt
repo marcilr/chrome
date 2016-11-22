@@ -1,0 +1,8 @@
+chrome.txt
+Created Tue Nov 22 14:56:21 AKST 2016
+Copyright (C) 2016 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Google chrome stable
+
+
