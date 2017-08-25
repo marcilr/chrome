@@ -1,0 +1,43 @@
+INSTALL
+Created Fri Aug 25 08:55:09 AKDT 2017
+Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Installatioin of google chrome stable
+
+As per http://www.ubuntuupdates.org/ppa/google_chrome:
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | \
+    sudo apt-key add - 
+  sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" \
+    >> /etc/apt/sources.list.d/google.list'
+  sudo apt-get update
+  sudo apt-get install google-chrome-stable
+
+  edited Feb 14 '16 at 10:22 Community
+  answered Oct 3 '12 at 20:13 Dale E Moore
+
+This is a great answer to get the standard Google Chrome.
+  – Mythul Mar 20 '15 at 20:01
+
+--askubuntu.com/questions/79280/how-to-install-chrome-browser-properly-via-command-line$
+
+
+
+Links
+=====
+3rd Party Repository: Google Chrome
+This repository is available for: Stable
+Setup key with:
+  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | \
+  sudo apt-key add - 
+Setup repository with:
+  sudo sh -c 'echo "deb [arch=amd64] \
+  http://dl.google.com/linux/chrome/deb/ stable main" >> \
+  /etc/apt/sources.list.d/google.list'
+Setup package with:
+  sudo apt-get update 
+  sudo apt-get install <package name>   <=== google-chrome-stable
+https://www.ubuntuupdates.org/ppa/google_chrome
+
+How to install Chrome browser properly via command line?
+https://askubuntu.com/questions/79280/how-to-install-chrome-browser-properly-via-command-line$
