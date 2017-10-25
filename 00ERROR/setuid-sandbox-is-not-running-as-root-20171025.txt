@@ -1,0 +1,80 @@
+setuid-sandbox-is-not-running-as-root-20171025.txt
+Created Wed Oct 25 08:15:08 AKDT 2017
+Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+On GCI covellite debian 8.9 amd64 I moved /opt to usb key.
+
+Now get chrome error:
+
+covellite:~$ google-chrome-stable 
+The setuid sandbox is not running as root. Common causes:
+  * An unprivileged process using ptrace on it, like a debugger.
+  * A parent process set prctl(PR_SET_NO_NEW_PRIVS, ...)
+Failed to move to new namespace: PID namespaces supported, \
+Network namespace supported, but failed: errno = Operation not permitted
+Trace/breakpoint trap
+covellite:~$ 
+
+Googling found:
+
+
+7/19/14
+Current row
+ukr9 said:
+
+I found the problem. The posts at 
+
+https://code.google.com/p/chromium/issues/detail?id=31077
+https://github.com/travis-ci/travis-ci/issues/938
+
+have the solution.  The partition where chrome is installed shouldn't
+be mounted with nosuid flag.  Getting rid of nosuid from the entry for
+/opt in /etc/fstab solves the problem. 
+
+From some of the comments there,
+
+-------------------------------------------
+#10 evan@chromium.org
+We hope to eliminate our SUID-based sandboxing in the near future.
+But for now, we require the SUID helper for sandboxing.
+---------------------------------------------
+
+I wish the error message could be further improved by adding the
+following as a common cause.
+
+* The file system on which chrome is installed is mounted with the
+  nosuid option
+
+--Chrome doesn't start (window doesn't appear) on Fedora 20 Linux 
+  by ukr9  7/12/14
+  Google Chrome Help Forum
+  https://productforums.google.com/forum/#!topic/chrome/bBSUEDtLBfA
+
+
+I had copied all of GCI covellite's /opt directory to the usb
+key.  The easy solution was to only copy the contained 
+DbVisualizer/ subdirectory and create a symlink under /opt/:
+
+Move usb key's opt/DbVisualizer/
+to usb keys's  bin/Dbvisualizer/
+  $ cd /media/marcilr/ext4/opt
+  # mv DbVisualizer/ ../bin/
+
+Move opt/ from usb key back to /opt/
+  $ cd /
+  # rm opt
+  # rsync -va --stats --progress /media/marcilr/ext4/opt .
+  $ cd /opt
+
+Create /opt/DbVisualizer/ symlink to usb key:
+  $ cd /opt/
+  # ln -s /media/marcilr/ext4/bin/DbVisualizer/
+  $ type dbvis
+  /home/marcilr/bin/dbvis
+  $ ls -l /home/marcilr/bin/dbvis
+  lrwxrwxrwx 1 marcilr marcilr 23 Oct 24 10:17 \
+  /home/marcilr/bin/dbvis -> /opt/DbVisualizer/dbvis
+  $
+
+Looks good.
