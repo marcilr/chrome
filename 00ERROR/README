@@ -1,0 +1,20 @@
+README
+Created Wed Oct 25 08:32:27 AKDT 2017
+Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Filelist
+========
+setuid-sandbox-is-not-running-as-root-20171025.txt
+  On GCI covellite debian 8.9 amd64 I moved /opt to usb key.
+
+  Now get chrome error:
+
+  covellite:~$ google-chrome-stable
+  The setuid sandbox is not running as root. Common causes:
+    * An unprivileged process using ptrace on it, like a debugger.
+    * A parent process set prctl(PR_SET_NO_NEW_PRIVS, ...)
+  Failed to move to new namespace: PID namespaces supported, \
+  Network namespace supported, but failed: errno = Operation not permitted
+  Trace/breakpoint trap
+  covellite:~$
