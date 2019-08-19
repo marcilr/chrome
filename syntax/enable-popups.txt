@@ -1,0 +1,12 @@
+enable-popups.txt
+Created Mon Aug 19 13:37:20 AKDT 2019
+Copyright (C) 2019 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Had to enable pop-up for training.
+
+
+See:
+  chrome://settings/content/popups
+
+  Allowed: slide to yes position
