@@ -13,3 +13,8 @@ enable-popups.txt
   Had to enable pop-up for training.
   chrome://settings/content/popups
     Allowed: slide to yes position
+
+reload-page.txt
+  Reload page
+  To reload page in chrome:
+    shift-F5
