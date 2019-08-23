@@ -1,0 +1,10 @@
+reload-page.txt
+Created Fri Aug 23 07:25:03 AKDT 2019
+Copyright (C) 2019 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Reload page
+
+
+To reload page in chrome:
+  shift-F5
