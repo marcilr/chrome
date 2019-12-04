@@ -3,7 +3,7 @@ Created Fri Aug 25 08:55:09 AKDT 2017
 Copyright (C) 2017 by Raymond E. Marcil <marcilr@gmail.com>
 
 
-Installatioin of google chrome stable
+Installation of google chrome stable
 
 As per http://www.ubuntuupdates.org/ppa/google_chrome:
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | \
