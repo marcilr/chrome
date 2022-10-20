@@ -34,7 +34,7 @@ Create /home/marcilr/bin/chrome script with:
 That did the trick for command line use.
 
 
-Solution for feh toolbar Chrome execution
+Solution for Xfce toolbar bottem of screen
 =========================================
 Top apply fix to feh icon launch of Chrome
 
@@ -54,6 +54,89 @@ usr/bin/google-chrome-stable %U
 
 To:
 usr/bin/google-chrome-stable --password-store=basic %U
+
+
+Solution for Xfce pull-down top-left of screen
+=============================================
+Alright following the instructions below under
+Chrome harasses me for a keychain password at startup:
+
+1. Backup keyrings before removel:
+$ sudo cp -r ~/.local/share/keyrings ~/keyrings-backup
+[sudo] password for marcilr: ***
+$
+
+Verify backup:
+$ ls -1 ~/.local/share/keyrings | wc -l 
+$ ls -1 ~/keyrings-backup | wc -l
+
+$ md5sum ~/.local/share/keyrings/*
+5683ef7c8b0d5756215fc1d8f903e6eb  /home/marcilr/.local/share/keyrings/login.keyring
+cee02560698f37280c2d6d65256b2511  /home/marcilr/.local/share/keyrings/user.keystore
+
+$ sudo md5sum ~/keyrings-backup/*
+5683ef7c8b0d5756215fc1d8f903e6eb  /home/marcilr/keyrings-backup/login.keyring
+cee02560698f37280c2d6d65256b2511  /home/marcilr/keyrings-backup/user.keystore
+
+Keyring backups look good.
+
+2. Remove non-working keyring:
+$ rm ~/.local/share/keyrings/*
+
+3. Restart Chrome
+
+4. When prompted to create a keyring, continue without entering a password. 
+(Turns out you would have been okay if you did this the first time.)
+
+Launching Chrome from Xfce > Internet > Google Chrome prompted
+me with:
+
+Choose password for keyring
+An application wnat to create new keyring called "Default keyring."
+Choose the password you want to use for it.
+
+Password: <blank>
+Confirm:  <blank>
+click Continue
+
+Store passwords unencrypted?
+By choosing to use a blank password, your stored passwords will
+not be safely encrypted.  They will be accessiable by anyone
+with access to your files.
+click Continue
+
+--Chrome harasses me for a keychain password at startup
+Asked 5 years, 11 months ago, Modified 2 years, 1 month ago, Viewed 29k times
+Unix & Linux
+https://unix.stackexchange.com/questions/324843/chrome-harasses-me-for-a-keychain-password-at-startup
+
+
+
+
+
+Chrome harasses me for a keychain password at startup
+=====================================================
+This problem has a long history and you can fiddle around with gnome-keyring 
+if you want, but I found that the easier solution is to set that prompt's 
+password to blank, such that it won't ask you anymore:
+
+1. rm ~/.local/share/keyrings/* (you may want to check/backup these files first, 
+if you're not on a fresh install, 
+e.g., cp -r ~/.local/share/keyrings ~/keyrings-backup)
+
+2. Restart Chrome
+
+3. When prompted to create a keyring, continue without entering a password. 
+(Turns out you would have been okay if you did this the first time.)
+
+edited Nov 21, 2016 at 9:13
+answered Nov 21, 2016 at 7:44, Wolf
+
+--Chrome harasses me for a keychain password at startup
+Asked 5 years, 11 months ago, Modified 2 years, 1 month ago, Viewed 29k times
+Unix & Linux
+https://unix.stackexchange.com/questions/324843/chrome-harasses-me-for-a-keychain-password-at-startup
+
 
 
 Links
