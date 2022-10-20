@@ -1,0 +1,81 @@
+unlock-keyring-at-startup.txt
+Created Thu 20 Oct 2022 10:15:18 AM AKDT
+Copyright (C) 2022 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Need to alleviate Chrome's prompting for keyring password at startup.
+
+
+The solution is to launch chrome with the --password-store=basic
+argument to alleviate prompting for password.
+
+
+Thu 20 Oct 2022 10:16:52 AM AKDT
+================================
+Launching chrome open popup prompting:
+
+Enter password to unlock
+An Application want access to the keyring "Default keyring", but it is locked
+Password:
+
+Chrome does this every time and it is a bit annoying.
+
+
+Solution for command line
+=========================
+The solution is to use the --password-store=basic argument 
+when lauching chrome.
+
+Create /home/marcilr/bin/chrome script with:
+
+#/bin/bash
+/usr/bin/google-chrome --password-store=basic &
+
+That did the trick for command line use.
+
+
+Solution for feh toolbar Chrome execution
+=========================================
+Top apply fix to feh icon launch of Chrome
+
+1. On feh toolbar
+right-click Chrome icon
+click Properies
+
+2. At Launcher window:
+click Google Chrome, Access the Internet
+click Edit the currently seleted item
+
+3. At Edit Launcher insert --password-store=basic to alleviate
+password prompting to command:
+
+Update:
+usr/bin/google-chrome-stable %U
+
+To:
+usr/bin/google-chrome-stable --password-store=basic %U
+
+
+Links
+=====
+Chrome asks for password to unlock keyring on startup
+https://askubuntu.com/questions/31786/chrome-asks-for-password-to-unlock-keyring-on-startup
+
+Googled: "chrome set password for Unlock Login keyring"
+How to Fix Google Chrome/Chromium asks for password to unlock keyring in Linux
+Mir Rahed Uddin
+Posted on Jan 18, 2021 • Updated on Mar 4, 2021
+https://dev.to/rahedmir/how-to-fix-google-chrome-chromium-asks-for-password-to-unlock-keyring-in-linux-1dl0
+
+What does %U mean in Google Chrome command on MX Linux?
+Asked 3 years, 8 months ago, Modified 3 years, 8 months ago, Viewed 2k times
+Stack Overflow for Teams – Start collaborating and sharing organizational knowledge.
+Answer
+  It's more than likely an Exec for a Desktop Entry Specification.
+  %U - A list of URLs. Each URL is passed as a separate argument to the executable program. 
+  Local files may either be passed as file: URLs or as file path.
+edited Feb 13, 2019 at 13:50
+  Micha Wiedenmann
+answered Feb 13, 2019 at 13:48
+  tDarkCrystal
+https://stackoverflow.com/questions/54670608/what-does-u-mean-in-google-chrome-command-on-mx-linux#:~:text=%25U%20%2D%20A%20list%20of%20URLs,13%2C%202019%20at%2013%3A50
