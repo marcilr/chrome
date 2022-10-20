@@ -1,0 +1,18 @@
+README
+Created Thu 20 Oct 2022 12:42:06 PM AKDT
+Copyright (C) 2022 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+Filelist
+========
+INSTALL
+  Installation of google chrome stable
+
+
+unlock-keyring-at-startup.txt
+  To alleviate Chrome's prompting for keyring password at startup 
+  use --password-store=basic argument.                              
+
+  Creates /home/marcilr/bin/chrome launch script
+  for command line.  Updated chrome launch command
+  for feh toolbar.
