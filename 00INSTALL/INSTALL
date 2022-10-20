@@ -22,11 +22,78 @@ This is a great answer to get the standard Google Chrome.
 --askubuntu.com/questions/79280/how-to-install-chrome-browser-properly-via-command-line$
 
 
-Fri 15 Nov 2019 12:33:24 PM AKST
+Wed 19 Oct 2022 01:53:52 PM AKDT
 ================================
-Tried on new Debian 10.1 amd64 workstation:
+Test chrome stable:
+$ chrome
+
+Chrome ran.  Need to determine credential for unlock login keyring.
+Prompted with:
+
+Enter password to uinlock your login keyring
+The password you use to log in to your computer no
+longger matches that of your login keyring
+
+Install chrome stable on on Debian 10.13 (Buster):
 
 $ cd ~/Downloads/
+
+Setup key with:
+  $ wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | \
+  sudo apt-key add -
+
+  [sudo] password for marcilr: ***
+  OK
+
+Setup repository with:
+  $ sudo sh -c 'echo "deb [arch=amd64] \
+  http://dl.google.com/linux/chrome/deb/ stable main" >> \
+  /etc/apt/sources.list.d/google.list'
+
+  $ cat /etc/apt/sources.list.d/google.list
+  # deb https://dl.google.com/linux/chrome/deb/ stable main
+  deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+
+
+Setup package with:
+  $ sudo apt-get update
+  ...
+  Fetched 682 kB in 2s (356 kB/s) 
+  ...
+  $ sudo apt-get install google-chrome-stable
+  Reading package lists... Done
+  Building dependency tree       
+  Reading state information... Done
+  The following additional packages will be installed:
+    libu2f-udev
+  The following NEW packages will be installed:
+    google-chrome-stable libu2f-udev
+  0 upgraded, 2 newly installed, 0 to remove and 9 not upgraded.
+  Need to get 92.3 MB/92.3 MB of archives.
+  After this operation, 301 MB of additional disk space will be used.
+  Do you want to continue? [Y/n] Y
+  Get:1 http://dl.google.com/linux/chrome/deb stable/main amd64 google-chrome-stable amd64 106.0.5249.119-1 [92.3 MB]
+  Fetched 92.3 MB in 4s (23.0 MB/s)               
+  Selecting previously unselected package google-chrome-stable.
+  (Reading database ... 380800 files and directories currently installed.)
+  Preparing to unpack .../google-chrome-stable_106.0.5249.119-1_amd64.deb ...
+  Unpacking google-chrome-stable (106.0.5249.119-1) ...
+  update-alternatives: using /usr/bin/google-chrome-stable to provide /usr/bin/google-chrome (google-chrome) in auto mode
+  Setting up libu2f-udev (1.1.9-1) ...
+  Processing triggers for desktop-file-utils (0.23-4) ...
+  Processing triggers for mime-support (3.62) ...
+  Processing triggers for man-db (2.8.5-2) ...
+  $
+
+$ type chrome
+chrome is /usr/local/bin/chrome
+$
+
+$ ls -l /usr/local/bin/chrome
+lrwxrwxrwx 1 root root 22 Dec  4  2019 /usr/local/bin/chrome -> /usr/bin/google-chrome
+$
+
+Looks good,
 
 
 
